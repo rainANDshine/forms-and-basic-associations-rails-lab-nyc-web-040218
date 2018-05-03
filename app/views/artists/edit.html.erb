@@ -1,9 +1,19 @@
 <h1>Editing <%= @artist.name %></h1>
-
+<!-- 
 <%= form_for @artist  do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <br />
 
   <%= f.submit %>
+<% end %> -->
+
+<%= form_for @artist do |f| %>
+  <%= f.text_field :artist_name, list: "artists_autocomplete" %>
+  <datalist id="artists_autocomplete">
+    <% Artist.all.each do |artist| %>
+      <option value="<%= artist.name %>">
+    <% end %>
+  </datalist>
+  <textarea name="artist[content]"></textarea>
 <% end %>
